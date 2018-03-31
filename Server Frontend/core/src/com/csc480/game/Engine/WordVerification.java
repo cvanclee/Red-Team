@@ -308,6 +308,16 @@ public class WordVerification {
         for (int i = 0; i < constraints.length; i++) {
             //if the char value is \0 there is a blank space there
             if (constraints[i] == '\0') {
+                if(i == startIndex && paranthesis > 0){
+                    for (int j = 0; j < paranthesis; j++) {
+                        if(emptySpace == 0) {
+                            regex += "|.{0})";
+                        }
+                        else{
+                            regex += "|.{0," + (emptySpace - 1) + "})";
+                        }
+                    }
+                }
                 emptySpace++;
             } else {
                 //if the constraint index is the start index, the char there is a mandatory char for the played word
